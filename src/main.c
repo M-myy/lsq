@@ -18,23 +18,25 @@
 
 int main(int argc,char **argv)
 {
-    // 文件名
-    const char *filename = "F:/Case/LSQ/data/dat.txt";
-
-    // 用来接收数据
-    float *x = (float *)malloc(sizeof(float) * max_num);
+    const char *filename = "F:/Case/LSQ/data/dat.txt";      // 文件名
+    float *x = (float *)malloc(sizeof(float) * max_num);    // 用来接收数据
     float *y = (float *)malloc(sizeof(float) * max_num);
-    // 用来接收文件数据
-    char buf[max_size];   
+    char buf[max_size];    // 临时接收文件数据
+    unsigned long long x_cnt = 0,y_cnt = 0;    // 计算行数
+    float a,b;    // 拟合直线斜率、截距
+    int j = 0;
+
     memset(x,0,sizeof(float) * max_num);
     memset(x,0,sizeof(float) * max_num);
     memset(buf,0,sizeof(char) * max_size);
 
-    // 计算行数
-    unsigned long long x_cnt = 0,y_cnt = 0;   
-    int j = 0;
-    
     FILE *fp = fopen(filename,"r");
+    if(fp == NULL)
+    {
+        printf("File read failure\n");
+        exit(0);
+    }
+    printf("The data is loading...\n");
 
     while((buf[j++] = fgetc(fp)) != EOF)
     {
@@ -53,14 +55,16 @@ int main(int argc,char **argv)
             j = 0;
         }
     }
+    fclose(fp);
+    fp = NULL;
+    printf("Data load complete.\n");
 
     if(x_cnt != y_cnt)
     {
-        printf("警告: 请检查文件格式，数组元素不完整或者最后一行不是以换行符结束!\n");
+        printf("Please check the file format!\n");
         exit(0);
     }
 
-    float a,b;
     lsq(x,y,x_cnt,&a,&b);
     printf("a: %f, b: %f\r\n",a,b);
     return 0;
