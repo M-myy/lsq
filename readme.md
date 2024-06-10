@@ -3,9 +3,13 @@
 文件架构：
 
 ```c
-lsq-
-    |—include
-    |-src
+lsq/
+|--include/
+|  |--lsq.h
+|
+|--src/
+|  |--main.c
+|  |--lsq.c
 ```
 
 数据文件格式：<font color = 'red'>`x-空格-y-换行符`</font>，最后一行必须以换行符号结束。
