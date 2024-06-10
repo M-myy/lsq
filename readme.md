@@ -10,6 +10,9 @@ lsq/
 |--src/
 |  |--main.c
 |  |--lsq.c
+|
+|--data/
+|  |--dat.txt
 ```
 
 数据文件格式：<font color = 'red'>`x-空格-y-换行符`</font>，最后一行必须以换行符号结束。
