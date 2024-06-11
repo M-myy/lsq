@@ -65,7 +65,18 @@ int main(int argc,char **argv)
         exit(0);
     }
 
-    lsq(x,y,x_cnt,&a,&b);
+    calc_lsq(x,y,x_cnt,&a,&b);
     printf("a: %f, b: %f\r\n",a,b);
+
+#if 1
+    // 使用结构体
+    lsq.x = x;
+    lsq.y = y;
+    lsq.num = x_cnt;
+    lsq.lsq(&lsq);
+    printf("结构体输出为, a: %f, b: %f\r\n",lsq.coef[0],lsq.coef[1]);
+#endif
+
+
     return 0;
 }
