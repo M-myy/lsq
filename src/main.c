@@ -10,6 +10,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <mem.h>
+#include "ringq.h"
 
 // 最大元素数
 #define max_num 100
@@ -77,6 +78,8 @@ int main(int argc,char **argv)
     printf("结构体输出为, a: %f, b: %f\r\n",lsq.coef[0],lsq.coef[1]);
 #endif
 
+    free(x);
+    free(y);
 
     return 0;
 }
